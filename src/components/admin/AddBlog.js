@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FileBase64 from "react-file-base64";
 import { useDispatch } from "react-redux";
-import { post } from "../../redux/blogSlice";
+import { createBlog } from "../../redux/blogSlice";
 import { useNavigate } from "react-router-dom";
 
 function AddBlog() {
@@ -18,7 +18,7 @@ function AddBlog() {
   const onFormSubmit = (e) => {
     e.preventDefault();
     //console.log(submitValues)
-    dispatch(post(submitValues));
+    dispatch(createBlog(submitValues));
     navigate("/blog-management");
   };
   return (

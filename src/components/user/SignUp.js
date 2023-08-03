@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createUser } from "../../redux/blogSlice";
 
 function SignUp() {
   const [userData, setUserData] = useState({
@@ -10,14 +8,14 @@ function SignUp() {
   });
   console.log(userData);
 
-  const dispatch = useDispatch()
+  //const dispatch = useDispatch()
   
   const onSubmit = (e)=> {
     e.preventDefault()
         if(userData.password===userData.confirmpass){
             alert('input success!')
-            const user = {email:userData.email,password:userData.password}
-            dispatch(createUser(user))
+            //const user = {email:userData.email,password:userData.password}
+            //dispatch(createUser(user))
         }else{
             alert('password confirmation failed!')
         }

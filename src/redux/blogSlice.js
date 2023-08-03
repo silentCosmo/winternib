@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { instance } from "../api/instance";
-import CryptoJS from "crypto-js";
+import { db } from "../firebase/config";
+import { ref, set } from "firebase/database";
 
 const initialState = {value:'temp'}
 
@@ -11,7 +11,7 @@ const blogSlice = createSlice({
         test:(state)=>{
            state.data = 'data set'
         },
-        post:(state,action) => {
+        /* post:(state,action) => {
             console.log(action.payload);
             instance.post('/posts',action.payload)
         },
@@ -52,14 +52,35 @@ const blogSlice = createSlice({
                 console.log('43',dPass);
             }
             getData()
+        }, */
+        userAuth:(state,action)=>{
+            const userData = action.payload
+            console.log('authRes',userData)
+            set(ref(db, `users/${userData.uid}/`), userData)
+            localStorage.setItem('auth',JSON.stringify(userData))
         },
-        user:(state,action)=>{
-            state.user = action.payload
-            console.log('user true');
+        userState:(state,action)=>{
+            
+            if(action.payload!==false){
+                state.user = action.payload
+            }else{
+                state.user = false
+                localStorage.removeItem('auth')
+            }
+            console.log('user true',action.payload, state.user);
+        },
+        createBlog:(state,action)=>{
+            console.log(state.user.uid);
+            const bid = Date.now()
+            const date = new Date().toLocaleString()
+            console.log(date);
+            const newBlog = {...action.payload, cid:state.user.uid, date: date }
+            console.log(newBlog);
+            set(ref(db, `blogs/${bid}` ), newBlog)
         }
     }
 })
 
 
-export const {test, post, edit, createUser, auth, user} = blogSlice.actions
+export const {test, post, edit, createBlog, userAuth, userState} = blogSlice.actions
 export default blogSlice.reducer

@@ -16,27 +16,43 @@ function ListBlogs() {
   } */
 
   const getBlogs = ()=>{ 
-    /* ref(db, 'posts/' + 21  );
+    
+    /* ref(db, 'posts/' + 0 );
     onValue(getBlogs, (snapshot) => {
     const data = snapshot.val()
     console.log('postElement', data);
   }) */
 
-  const userId = 'DzyeOEdcryaJlqn4sdPlm8mPL0o2'
-  const dbRef = ref(getDatabase())
-  get(child(dbRef, `users/`)).then((snapshot) => {
+  //const userId = 'DzyeOEdcryaJlqn4sdPlm8mPL0o2'
+  //const dbRef = ref(getDatabase())
+
+  onValue(ref(db,"blogs/"), (snapshot) => {
+    const data = snapshot.val()
+    console.log(data)
+    if(data!==null){
+        Object.values(data).map((blog)=>{
+          setBlogs((oldArr)=>[...oldArr,blog])
+          console.log(blog);
+          
+      })
+    }
+  })
+  
+  console.log(blogs);
+
+  /* get(child(dbRef, `users/`)).then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
       const blogs = snapshot.val()
-      const array = Object.entries(blogs)
-      console.log(array);
+      //const array = Object.entries(blogs)
+      //console.log(array);
       //setBlogs(blogs)
     } else {
       console.log("No data available");
     }
   }).catch((error) => {
     console.error(error);
-  })
+  }) */
 
   /* dbRef.on("posts/", (snapshot) => {
     const data = snapshot.val();
@@ -75,7 +91,7 @@ function ListBlogs() {
                 <div className="p-3">
                  <div className='text-right'>
                     <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white bg-teal-500 rounded-sm hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:hover:bg-teal-700 dark:focus:teal-blue-900">
-                    {blog.keywords}
+                    {blog.id}
                     </p>
                  </div>
                   <div className='text-left'>

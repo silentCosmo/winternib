@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { ImGoogle } from 'react-icons/im'
 import { appName, appTheme } from '../layout/LayoutVariables';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, db, provider } from '../../firebase/config';
-import { ref, set } from 'firebase/database';
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from '../../firebase/config';
+import { userAuth, userState } from '../../redux/blogSlice';
 
 
 function LogIn() {
+  const navto = useNavigate()
     /*const dispatch = useDispatch()
-    const nav = useNavigate()
      const [userData,setUserData] = useState({
         email:'',
         password:'',
@@ -25,37 +25,48 @@ function LogIn() {
         dispatch(auth(userData))
     }*/
 
+    const dispatch = useDispatch()
+
     const handleSignIn = ()=>{
       alert('signUp')
       signInWithPopup(auth, provider)
-  .then((result) => {
+      .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+
+    //const credential = GoogleAuthProvider.credentialFromResult(result);
+    //const token = credential.accessToken;
+
     // The signed-in user info.
     const user = result.user;
-    const userData = [
-      {
-      id:user.uid,
+    const userData = {
+      uid:user.uid,
       name:user.displayName,
       email:user.email,
       avatar:user.photoURL,
     }
-    ]
-    set(ref(db, 'users/' ), userData)
-    console.log('authRes',userData);
+    dispatch(userAuth(userData))
+    dispatch(userState(true))
+    navto('/')
+    
     // IdP data available using getAdditionalUserInfo(result)
     // ...
   }).catch((error) => {
     // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    /* const errorCode = error.code;
+    const errorMessage = error.message; */
     // The email of the user's account used.
-    const email = error.customData.email;
+    //const email = error.customData.email;
     // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
+    //const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });
+  /* const userData = {
+    id:'7777777',
+    name:'user.displayName',
+    email:'user.email',
+    avatar:'user.photoURL',
+  } */
+    
     }
 
   return (

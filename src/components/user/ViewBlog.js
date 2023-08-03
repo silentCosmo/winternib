@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { instance } from '../../api/instance';
 import { useParams } from 'react-router-dom';
 
 function ViewBlog() {
     const id = useParams()
     const [blog,setBlog] = useState({})
     const fetchData = async (id) => {
-        const blog = await instance.get(`/posts/${id.id}`).then((response) => {
+        /* const blog = await instance.get(`/posts/${id.id}`).then((response) => {
           return response.data;
         });
         setBlog(blog);
-        console.log("a", blog);
+        console.log("a", blog); */
+        setBlog([{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}
+        ,{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}])
       };
       useEffect(()=>{
         fetchData(id)

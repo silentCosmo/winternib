@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import FileBase64 from 'react-file-base64'
 import { edit } from '../../redux/blogSlice';
-import { instance } from '../../api/instance';
 
 function EditBlog() {
     const id = useParams()
@@ -11,11 +10,11 @@ function EditBlog() {
     console.log(data);
     const [blog,setBlog] = useState({})
     const fetchData = async (id) => {
-        const blog = await instance.get(`/posts/${id.id}`).then((response) => {
+        /* const blog = await instance.get(`/posts/${id.id}`).then((response) => {
           return response.data;
         });
         setBlog(blog);
-        console.log("a", blog);
+        console.log("a", blog); */
       };
       useEffect(()=>{
         fetchData(id)

@@ -8,19 +8,21 @@ import EditBlog from './components/admin/EditBlog';
 import LogIn from './components/user/LogIn';
 import SignUp from './components/user/SignUp';
 import NavBar from './components/layout/NavBar';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [auth,setAuth] = useState(false)
-
-  
+  //const [auth,setAuth] = useState(false)
+  //const disp = useDispatch()
+  const auth = useSelector((state)=>state.blogs.user)
 
   useEffect(()=>{
-    const auth = sessionStorage.getItem('auth')
-    console.log('pa',auth);
+    /* const auth = localStorage.getItem('auth')
+    console.log('pa',JSON.parse(auth))
     if(auth){
       setAuth(true)
-    }
+      disp(user(true))
+    } */
   },[])
 
   const router = createBrowserRouter([

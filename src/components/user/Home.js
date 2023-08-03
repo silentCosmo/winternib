@@ -4,13 +4,14 @@ import { db } from '../../firebase/config'
 import { ref, set } from 'firebase/database'
 
 function Home() {
-  const userId = 672378
-  const wd =()=>{
-  set(ref(db, 'users/' + userId), {
+  const userId = 347548
+  const data = [{
     username: 'name',
     email: 'email',
     profile_picture : 'imageUrl'
-  }).then((re)=>{console.log('suc')}).catch((err)=>{console.log(err)})
+  }]
+  const wd =()=>{
+  set(ref(db, 'posts/' ), data).then((re)=>{console.log('suc')}).catch((err)=>{console.log(err)})
 }
   return (
     <div>

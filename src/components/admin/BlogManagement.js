@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { instance } from "../../api/instance";
 import { useEffect } from "react";
 
 function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
   const [refresh,setRefresh] = useState(false)
 
-  const fetchData = async () => {
+  /* const fetchData = async () => {
     const blogs = await instance.get("/posts").then((response) => {
       return response.data;
     });
     setBlogs(blogs);
     console.log("a", blogs);
-  };
+  }; */
   useEffect(() => {
-    fetchData();
+    //fetchData();
+    setBlogs([{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}
+        ,{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}])
   }, [refresh]);
 
   const onDelete = (id) => {
-    instance.delete(`/posts/${id}`)
+    //instance.delete(`/posts/${id}`)
     setRefresh(!refresh)
   }
 
