@@ -1,4 +1,4 @@
-import { child, get, getDatabase, onValue, ref } from 'firebase/database';
+import { onValue, ref } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
@@ -33,7 +33,7 @@ function ListBlogs() {
         Object.values(data).map((blog)=>{
           setBlogs((oldArr)=>[...oldArr,blog])
           console.log(blog);
-          
+          return 0
       })
     }
   })
@@ -69,6 +69,7 @@ function ListBlogs() {
         console.log('JSON ERROR',err.code)
       }
     }) */
+    //eslint-disable-next-line
   }, []);
   const onClick = (id)=>{
     navto(`/view-blog/${id}`)
