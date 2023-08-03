@@ -24,8 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && cp _redirects build/_redirects",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "json-server --port 3001 --watch src/database/db.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "tailwindcss": "^3.3.2"
   }
 }
