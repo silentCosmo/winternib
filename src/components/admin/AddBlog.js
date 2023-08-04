@@ -9,7 +9,7 @@ function AddBlog() {
   const navigate = useNavigate();
   let initialValues = {
     title: "",
-    description: "",
+    content: "",
     keywords: "",
     image: "",
   };
@@ -26,7 +26,7 @@ function AddBlog() {
       <h3>ADD BLOG</h3>
 
       <form
-        className="w-[50%] text-center border border-yellow-400 mx-auto p-3"
+        className="md:w-[50%] text-center border border-teal-400 bg-teal-100 mx-auto p-3"
         onSubmit={onFormSubmit}
       >
         <div className="mb-6">
@@ -43,7 +43,7 @@ function AddBlog() {
             onChange={(e) =>
               setSubmitValues({ ...submitValues, title: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-50 border border-teal-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>
@@ -52,7 +52,7 @@ function AddBlog() {
             for="description"
             className="block mb-2 text-sm font-medium text-gray-900 text-start"
           >
-            Description
+            Content
           </label>
           <textarea
             rows={4}
@@ -60,9 +60,9 @@ function AddBlog() {
             id="description"
             value={submitValues.description}
             onChange={(e) =>
-              setSubmitValues({ ...submitValues, description: e.target.value })
+              setSubmitValues({ ...submitValues, content: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-50 border border-teal-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>
@@ -80,14 +80,14 @@ function AddBlog() {
             onChange={(e) =>
               setSubmitValues({ ...submitValues, keywords: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-50 border border-teal-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>
 
         <div>
           <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-teal-900 dark:text-white"
             for="user_avatar"
           >
             Upload file
@@ -105,13 +105,13 @@ function AddBlog() {
         </div>
         <button
           type="submit"
-          className="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white mt-5 bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
         >
           Submit
         </button>
         <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ml-2"
+          type="cancel"
+          className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-800 ml-2"
         >
           Cancel
         </button>
