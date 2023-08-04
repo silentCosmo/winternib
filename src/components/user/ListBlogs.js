@@ -101,7 +101,7 @@ function ListBlogs() {
                     </h5>
                   </div>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-600 w-full text-start overflow-hidden h-12">
-                    {blog.description}
+                    {blog.content}
                   </p>
                   
                 </div>
