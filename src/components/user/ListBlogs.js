@@ -95,8 +95,8 @@ function ListBlogs() {
                 </div>
                 <div className="p-3">
                  <div className='text-right'>
-                    <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-gray-400 bg-teal-600 bg-opacity-20 rounded-sm hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:hover:bg-teal-700 dark:focus:teal-blue-900">
-                    {new Date(blog.date).getUTCDay()}
+                    <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-gray-400 bg-teal-600 bg-opacity-20 rounded-md hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:hover:bg-teal-700 dark:focus:teal-blue-900">
+                    {new Date(blog.date).getDay()} / { new Date(blog.date).getDate()} / { new Date(blog.date).getFullYear()}
                     </p>
                  </div>
                   <div className='text-left'>
