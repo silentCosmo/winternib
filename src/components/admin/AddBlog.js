@@ -22,17 +22,17 @@ function AddBlog() {
     navigate("/blog-management");
   };
   return (
-    <div className="border border-green-400 p-5">
-      <h3>ADD BLOG</h3>
+    <div className=" text-teal-300 p-5">
+      <h3 className="mb-2 font-bold text-lg text-teal-400">ADD BLOG</h3>
 
       <form
-        className="md:w-[50%] text-center border border-teal-400 bg-teal-50 mx-auto p-3"
+        className="md:w-[50%] rounded-md text-center border border-teal-700 bg-teal-950 mx-auto p-3 baackdrop-blur-2xl bg-opacity-40"
         onSubmit={onFormSubmit}
       >
         <div className="mb-6">
           <label
             for="email"
-            className="block mb-2 text-sm font-medium text-gray-900 text-start"
+            className="block mb-2 text-sm font-medium text-start"
           >
             Blog Tittle
           </label>
@@ -43,14 +43,14 @@ function AddBlog() {
             onChange={(e) =>
               setSubmitValues({ ...submitValues, title: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-teal-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-sm rounded-lg block w-full p-2.5"
             required
           />
         </div>
         <div className="mb-6">
           <label
             for="description"
-            className="block mb-2 text-sm font-medium text-gray-900 text-start"
+            className="block mb-2 text-sm font-medium text-start"
           >
             Content
           </label>
@@ -62,14 +62,14 @@ function AddBlog() {
             onChange={(e) =>
               setSubmitValues({ ...submitValues, content: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-teal-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g"
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g"
             required
           />
         </div>
         <div className="mb-6">
           <label
             for="keyword"
-            className="block mb-2 text-sm font-medium text-gray-900 text-start"
+            className="block mb-2 text-sm font-medium text-start"
           >
             Keywords
           </label>
@@ -80,14 +80,14 @@ function AddBlog() {
             onChange={(e) =>
               setSubmitValues({ ...submitValues, keywords: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-teal-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-teal-500 block w-full p-2.5  dark:placeholder-g "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-teal-500 block w-full p-2.5  dark:placeholder-g "
             required
           />
         </div>
 
         <div>
           <label
-            className="block mb-2 text-sm font-medium text-teal-900"
+            className="block mb-2 text-sm font-medium text-teal-300"
             for="user_avatar"
           >
             Image
@@ -99,7 +99,7 @@ function AddBlog() {
             onDone={(files) =>
               setSubmitValues({ ...submitValues, image: files.base64 })
             }
-            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none  dark:placeholder-g"
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-900 dark:text-gray-400 focus:outline-none"
           ></FileBase64>
           {/* <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">A profile picture is useful to confirm your are logged into your account</div> */}
         </div>

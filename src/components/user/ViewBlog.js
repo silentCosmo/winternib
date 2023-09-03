@@ -36,7 +36,7 @@ function ViewBlog() {
 
   return (
     <div className={`p-5 min-h-[100vh]`} >
-        <div className='pb-5 justify-center bg-teal-300 border-teal-200 border bg-clip-padding backdrop-filter backdrop-blur-xl text-lg bg-opacity-5'>
+        <div className='pb-5 justify-center rounded-sm bg-teal-300 border-teal-200 border bg-clip-padding backdrop-filter backdrop-blur-xl text-lg bg-opacity-5'>
         <div>
         <h1 className='my-5 font-bold text-4xl mx-auto max-w-screen-sm drop-shadow-md text-teal-100'>{blog.title}</h1>
       </div>

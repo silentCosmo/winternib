@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
+import { onValue, ref } from "firebase/database";
+import { db } from "../../firebase/config";
 
 function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
   const [refresh,setRefresh] = useState(false)
 
-  /* const fetchData = async () => {
-    const blogs = await instance.get("/posts").then((response) => {
-      return response.data;
-    });
-    setBlogs(blogs);
-    console.log("a", blogs);
-  }; */
+  const fetchData = async () => {
+    onValue(ref(db,"blogs/"), (snapshot) => {
+      const data = snapshot.val()
+      console.log(data)
+      if(data!==null){
+          Object.values(data).map((blog)=>{
+            setBlogs((oldArr)=>[...oldArr,blog])
+            console.log('blog');
+            return 0
+        })
+      }
+    })
+  };
   useEffect(() => {
-    //fetchData();
-    setBlogs([{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}
-        ,{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}])
+    fetchData();
+    /* setBlogs([{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}
+        ,{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}]) */
   }, [refresh]);
 
   const onDelete = (id) => {
@@ -26,10 +34,10 @@ function BlogManagement() {
 
   console.log("b");
   return (
-    <div className="flex justify-center flex-col gap-2 ml-5 mt-4 h-screen">
+    <div className="flex flex-col gap-2 ml-5 my-4 h-screen">
       <NavLink
         to={"/add-blog"}
-        className="border border-teal-500 p-2 bg-teal-400 active:bg-teal-800 hover:bg-teal-600 w-[7rem]"
+        className="border border-teal-500 p-2 bg-teal-700 text-teal-100 active:bg-teal-800 backdrop-blur-md bg-opacity-30 hover:bg-teal-800 w-[7rem]"
       >
         Add Blog
       </NavLink>
@@ -42,7 +50,7 @@ function BlogManagement() {
         {blogs.map((blog) => {
           return (
             <div className="flex flex-row mt-1">
-              <div className="w-[19rem] h-full mb-2 bg-white border border-gray-200 rounded-lg shadow-md">
+              <div className="w-[19rem] h-full mb-2 bg-white border border-gray-200 rounded-lg shadow-md backdrop-filter backdrop-blur-xl bg-opacity-5">
                 <div>
                   <img
                     className="rounded-t-lg h-52 w-full object-cover hover:object-none bg-zinc-50"

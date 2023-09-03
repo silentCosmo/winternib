@@ -8,6 +8,7 @@ import EditBlog from './components/admin/EditBlog';
 import LogIn from './components/user/LogIn';
 import SignUp from './components/user/SignUp';
 import NavBar from './components/layout/NavBar';
+import Footer from './components/layout/Footer'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 //import { bg } from './redux/blogSlice';
@@ -31,7 +32,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <><NavBar/><Outlet/></>,
+      element: <><NavBar/><Outlet/><Footer/></>,
       children:[
     {
       path: '/',

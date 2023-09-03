@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import FileBase64 from 'react-file-base64'
 import { edit } from '../../redux/blogSlice';
 
@@ -43,19 +43,19 @@ function EditBlog() {
     }
 
   return (
-    <div className="border border-green-400 p-5">
-      <h3>EDIT BLOG</h3>
+    <div className=" text-teal-200 p-5">
+      <h3 className='mb-2 text-lg font-bold text-teal-400'>EDIT BLOG</h3>
 
       <form
-        className="w-[50%] text-center border border-yellow-400 mx-auto p-3"
+        className="w-[50%] rounded-md text-center border border-teal-800 backdrop-blur-md mx-auto p-3"
         onSubmit={onFormSubmit}
       >
         <div className="mb-6">
           <label
             for="email"
-            className="block mb-2 text-sm font-medium text-gray-900 text-start"
+            className="block mb-2 text-sm font-medium text-start"
           >
-            Blog Tittle
+            Tittle
           </label>
           <input
             type="title"
@@ -64,14 +64,14 @@ function EditBlog() {
             onChange={(e) =>
               setBlog({ ...blog, title: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>
         <div className="mb-6">
           <label
             for="keyword"
-            className="block mb-2 text-sm font-medium text-gray-900 text-start"
+            className="block mb-2 text-sm font-medium text-start"
           >
             Keywords
           </label>
@@ -82,7 +82,7 @@ function EditBlog() {
             onChange={(e) =>
               setBlog({ ...blog, keywords: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>
@@ -90,9 +90,9 @@ function EditBlog() {
         <div className="mb-6">
           <label
             for="description"
-            className="block mb-2 text-sm font-medium text-gray-900 text-start"
+            className="block mb-2 text-sm font-medium text-start"
           >
-            Description
+            Content
           </label>
           <textarea
             rows={4}
@@ -102,13 +102,13 @@ function EditBlog() {
             onChange={(e) =>
               setBlog({ ...blog, description: e.target.value })
             }
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>
         <div>
           <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium"
             for="user_avatar"
           >
             Upload file
@@ -120,22 +120,22 @@ function EditBlog() {
             onDone={(files) =>
               setBlog({ ...blog, image: files.base64 })
             }
-            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none  dark:placeholder-g"
+            className="block w-full text-sm  border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none  dark:placeholder-g"
           ></FileBase64>
           {/* <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">A profile picture is useful to confirm your are logged into your account</div> */}
         </div>
         <button
           type="submit"
-          className="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white mt-5 bg-opacity-40 border border-blue-700 bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
         >
           Submit
         </button>
-        <button
+        <NavLink to={'/blog-management'}
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ml-2"
+          className="text-white bg-opacity-40 border border-red-700 bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-2"
         >
           Cancel
-        </button>
+        </NavLink>
       </form>
     </div>
   )

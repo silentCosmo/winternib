@@ -33,10 +33,10 @@ function NavBar() {
   } */
 
   return (
-    <div className='sticky top-0 p-3 z-20 h-full w-full bg-teal-300 shadow-teal-500 shadow-sm rounded-b-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
+    <div className='sticky top-0 p-3 z-20 h-full w-full bg-teal-300 shadow-teal-600 shadow-sm rounded-b-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
         <header className='flex flex-row justify-between mx-3'>
         <div>
-          <NavLink to={'/'} className='text-teal-500 text-3xl font-bold'>{appName}</NavLink>
+          <NavLink to={'/'} className='text-teal-400 text-3xl font-bold'>{appName}</NavLink>
           {/* <button onClick={themeMode}>Dark</button> = Theme change beta*/}
         </div>
         { loggedIn?
