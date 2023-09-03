@@ -10,7 +10,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
-  /* background-image: url('https://wallpapers.com/images/hd/teal-under-the-sea-5ddbi7f7j8i4um90.jpg'); */
+  /**/ background-image: url('https://media.istockphoto.com/id/639392022/vector/bookshelves-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=1DNOwFJabnlqHzShnSHfWOsNBUTtIaOgFBcpGQO_-oQ='); 
+  
 }
 
 code {

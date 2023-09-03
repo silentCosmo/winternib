@@ -1,15 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { db } from "../firebase/config";
 import { ref, set } from "firebase/database";
+import { appTheme } from "../components/layout/LayoutVariables";
 
-const initialState = {value:'temp'}
-
+const initialState = {value:'temp',theme:'hi'}
 const blogSlice = createSlice({
     name:'blogs',
     initialState,
     reducers: {
         test:(state)=>{
            state.data = 'data set'
+        },
+        theme:(state,action)=>{
+            console.log(action.payload);
+            state.theme = action.payload?appTheme.dark:appTheme.light
+            console.log(state.theme);
+        },
+        bg:(state,action)=>{
+            state.bg = action.payload
+            console.log(state.bg)
         },
         /* post:(state,action) => {
             console.log(action.payload);
@@ -74,7 +83,7 @@ const blogSlice = createSlice({
             const bid = Date.now()
             const date = new Date().toLocaleString()
             console.log(date);
-            const newBlog = {...action.payload, cid:state.user.uid, date: date }
+            const newBlog = {...action.payload, cid:state.user.uid, date: date, bid:bid }
             console.log(newBlog);
             set(ref(db, `blogs/${bid}` ), newBlog)
         }
@@ -82,5 +91,5 @@ const blogSlice = createSlice({
 })
 
 
-export const {test, post, edit, createBlog, userAuth, userState} = blogSlice.actions
+export const {test, theme,bg, post, edit, createBlog, userAuth, userState} = blogSlice.actions
 export default blogSlice.reducer

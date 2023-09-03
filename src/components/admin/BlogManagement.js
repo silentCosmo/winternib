@@ -22,19 +22,20 @@ function BlogManagement() {
   const onDelete = (id) => {
     //instance.delete(`/posts/${id}`)
     setRefresh(!refresh)
-  }
+  } 
 
   console.log("b");
   return (
-    <div className="flex justify-center flex-col gap-2 ml-5 mt-4">
+    <div className="flex justify-center flex-col gap-2 ml-5 mt-4 h-screen">
       <NavLink
         to={"/add-blog"}
         className="border border-teal-500 p-2 bg-teal-400 active:bg-teal-800 hover:bg-teal-600 w-[7rem]"
       >
         Add Blog
       </NavLink>
-
-      <hr className="w-full" />
+      <div className="text-center">
+       <hr className="w-[99%] border border-teal-600" />
+      </div>
       
       <div className="flex justify-center">
         <div className="grid md:grid-cols-4 grid-cols-2 gap-5">

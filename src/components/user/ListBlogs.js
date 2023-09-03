@@ -2,6 +2,7 @@ import { onValue, ref } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
+import { appTheme } from '../layout/LayoutVariables';
 
 function ListBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -25,6 +26,7 @@ function ListBlogs() {
 
   //const userId = 'DzyeOEdcryaJlqn4sdPlm8mPL0o2'
   //const dbRef = ref(getDatabase())
+  console.log('Hiiii')
 
   onValue(ref(db,"blogs/"), (snapshot) => {
     const data = snapshot.val()
@@ -32,7 +34,7 @@ function ListBlogs() {
     if(data!==null){
         Object.values(data).map((blog)=>{
           setBlogs((oldArr)=>[...oldArr,blog])
-          console.log(blog);
+          console.log('blog');
           return 0
       })
     }
@@ -72,6 +74,8 @@ function ListBlogs() {
     //eslint-disable-next-line
   }, []);
   const onClick = (id)=>{
+    //const lowercaseTitle = id.toLowerCase();
+    //const urlId = lowercaseTitle.replace(/[^\w\s]/g, '-').replace(/\s+/g, '-')
     navto(`/view-blog/${id}`)
   }
   return (
@@ -80,13 +84,13 @@ function ListBlogs() {
         <div className="grid md:grid-cols-3 p-2 grid-cols-2 gap-2 md:gap-20">
         {blogs.map((blog) => {
           return (
-            <div onClick={()=>onClick(blog.id)} key={blog.id} className="flex flex-row mt-1">
-              <div className="w-[19rem] h-full mb-2 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-teal-200 hover:scale-95 duration-100">
+            <div onClick={()=>onClick(blog.bid)} key={blog.bid} className="flex flex-row mt-1">
+              <div className="w-[19rem] h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
                 <div>
                   <img
-                    className="rounded-t-lg h-52 w-full object-cover bg-zinc-50"
-                    src={blog.image}
-                    alt=""
+                    className="rounded-t-lg h-52 w-full object-cover"
+                    src={blog.image?blog.image:appTheme.noThumb}
+                    alt="thumbnile"
                   />
                 </div>
                 <div className="p-3">
@@ -96,11 +100,11 @@ function ListBlogs() {
                     </p>
                  </div>
                   <div className='text-left'>
-                    <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-black-600">
+                    <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-200 dark:text-black-600">
                       {blog.title}
                     </h5>
                   </div>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-600 w-full text-start overflow-hidden h-12">
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 w-full text-start overflow-hidden h-12">
                     {blog.content}
                   </p>
                   

@@ -10,11 +10,14 @@ import SignUp from './components/user/SignUp';
 import NavBar from './components/layout/NavBar';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+//import { bg } from './redux/blogSlice';
+import { appTheme } from './components/layout/LayoutVariables';
 
 function App() {
   //const [auth,setAuth] = useState(false)
   //const disp = useDispatch()
   const auth = useSelector((state)=>state.blogs.user)
+  const bgIm = useSelector((state)=>state.blogs.bg)
 
   useEffect(()=>{
     /* const auth = localStorage.getItem('auth')
@@ -62,8 +65,10 @@ function App() {
   ])
 
   return (
-    <div className="App bg-zinc-50">
-      <RouterProvider router={router}/>
+    <div className="App bg-zinc-50" style={{ backgroundImage: `url(${bgIm?bgIm:appTheme.appBg})`, backgroundRepeat: 'round' }} >
+      <div className=' backdrop-blur-md'>
+        <RouterProvider router={router}/>
+      </div>
     </div>
   );
 }
