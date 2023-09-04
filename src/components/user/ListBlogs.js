@@ -79,16 +79,16 @@ function ListBlogs() {
     navto(`/view-blog/${id}`)
   }
   return (
-    <div className='my-5'>
+    <div className='md:my-5'>
         <div className="flex justify-center">
-        <div className="grid md:grid-cols-3 p-2 grid-cols-2 gap-2 md:gap-20">
+        <div className="grid md:grid-cols-3 p-2 grid-cols-1 gap-2 md:gap-20">
         {blogs.map((blog) => {
           return (
             <div onClick={()=>onClick(blog.bid)} key={blog.bid} className="flex flex-row mt-1">
-              <div className="md:w-[15rem] w-44 h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
+              <div className="md:w-[19rem] w- h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
                 <div>
                   <img
-                    className="rounded-t-lg h-52 w-full object-cover"
+                    className="rounded-t-lg h-56 w-full object-cover"
                     src={blog.image?blog.image:appTheme.noThumb}
                     alt="thumbnile"
                   />
@@ -100,7 +100,7 @@ function ListBlogs() {
                     </p>
                  </div>
                   <div className='text-left'>
-                    <h5 className="mb-1 text-2xl font-bold tracking-tight w-40 overflow-hidden text-gray-200 dark:text-black-600">
+                    <h5 className="mb-1 text-2xl font-bold tracking-tight  overflow-hidden text-gray-200 dark:text-black-600">
                       {blog.title}
                     </h5>
                   </div>
