@@ -47,7 +47,7 @@ function EditBlog() {
       <h3 className='mb-2 text-lg font-bold text-teal-400'>EDIT BLOG</h3>
 
       <form
-        className="w-[50%] rounded-md text-center border border-teal-800 backdrop-blur-md mx-auto p-3"
+        className="md:w-[50%] rounded-md text-center border border-teal-800 backdrop-blur-md mx-auto p-3"
         onSubmit={onFormSubmit}
       >
         <div className="mb-6">
@@ -102,7 +102,7 @@ function EditBlog() {
             onChange={(e) =>
               setBlog({ ...blog, description: e.target.value })
             }
-            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required
           />
         </div>

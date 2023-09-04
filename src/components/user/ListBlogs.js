@@ -85,7 +85,7 @@ function ListBlogs() {
         {blogs.map((blog) => {
           return (
             <div onClick={()=>onClick(blog.bid)} key={blog.bid} className="flex flex-row mt-1">
-              <div className="w-[19rem] h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
+              <div className="md:w-[15rem] w-44 h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
                 <div>
                   <img
                     className="rounded-t-lg h-52 w-full object-cover"
@@ -96,7 +96,7 @@ function ListBlogs() {
                 <div className="p-3">
                  <div className='text-right'>
                     <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-gray-400 bg-teal-600 bg-opacity-20 rounded-md hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:hover:bg-teal-700 dark:focus:teal-blue-900">
-                    {new Date(blog.date).getDay()} / { new Date(blog.date).getDate()} / { new Date(blog.date).getFullYear()}
+                    {/* {new Date(blog.date).getDay()} / */}  { new Date(blog.date).toDateString()}  {/* / { new Date(blog.date).getFullYear()} */}
                     </p>
                  </div>
                   <div className='text-left'>

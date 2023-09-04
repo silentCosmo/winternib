@@ -70,10 +70,10 @@ function LogIn() {
     }
 
   return (
-    <div className="bg-gray-50">
+    <div className="">
     <section>
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="/" className="flex items-center text-2xl font-semibold text-teal-700">
+      <a href="/" className="flex items-center text-2xl font-semibold text-teal-400">
           LogIn to {appName}   
       </a>
       <div className="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-teal-00 bg-clip-padding backdrop-blur-sm bg-opacity-10 border-teal-0">
@@ -81,7 +81,7 @@ function LogIn() {
               {/* <h1 className="text-xl font-bold leading-tight tracking-tight text-teal-950 md:teal-2xl">
                   Sign in to your account
               </h1> */}
-              <div onClick={handleSignIn} className={`${appTheme.glassBox} w-fit p-3 text-teal-700 hover:text-teal-100 hover:bg-teal-700 hover:scale-95 active:bg-teal-900 duration-300 flex flex-row`}>
+              <div onClick={handleSignIn} className={`${appTheme.glassBox} w-fit p-3 rounded-sm text-teal-300 hover:text-teal-100 hover:bg-teal-800 hover:scale-95 active:bg-teal-900 duration-300 flex flex-row`}>
                 <ImGoogle className='mt-1'/>
                 <h3>&nbsp; SignIn with Google</h3>
               </div>
