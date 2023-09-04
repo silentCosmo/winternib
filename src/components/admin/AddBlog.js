@@ -80,7 +80,7 @@ function AddBlog() {
             onChange={(e) =>
               setSubmitValues({ ...submitValues, keywords: e.target.value })
             }
-            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-teal-500 block w-full p-2.5  dark:placeholder-g "
+            className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-sm rounded-lg focus:ring-yellow-500 focus:border-teal-500 block w-full p-2.5  dark:placeholder-g "
             required
           />
         </div>
