@@ -29,6 +29,7 @@ function NavBar() {
   }
   const handleMenu = (select)=>{
     if(select==='manage'){navto('blog-management')}
+    if(select==='login'){navto('login')}
     setMenuToggle(!menuToggle)
   }
   /* const [toggle,setToggle] = useState(false)
@@ -63,7 +64,7 @@ function NavBar() {
         </div>
         :
         <div className='mt-'>
-          <NavLink to={'/login'} onClick={handleMenu} className='px-2 py-1 bg-teal-400 hover:bg-teal-500 border border-teal-500 text-teal-950 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30'>LogIn</NavLink>
+          <button onClick={()=>handleMenu('login')} className='px-2 py-2 w-full hover:bg-teal-800 text-teal-400 bg-clip-padding backdrop-filter backdrop-blur-sm hover:bg-opacity-30'>LogIn</button>
         </div> 
         
         }

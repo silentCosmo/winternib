@@ -70,9 +70,9 @@ function LogIn() {
     }
 
   return (
-    <div className="">
+    <div className="h-[90vh]">
     <section>
-    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div className="flex flex-col items-center justify-center px-6 py-8 mt-20 mx-auto md:h-screen lg:py-0">
       <a href="/" className="flex items-center text-2xl font-semibold text-teal-400">
           LogIn to {appName}   
       </a>
