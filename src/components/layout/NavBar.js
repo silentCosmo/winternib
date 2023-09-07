@@ -55,10 +55,10 @@ function NavBar() {
           { loggedIn?
           <div className=" flex-row w-screen flex">
            <div className=''>
-            <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[50vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
+            <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[49vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
           </div>
           <div>
-            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[50vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
+            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[49vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
           </div>
         </div>
         :
