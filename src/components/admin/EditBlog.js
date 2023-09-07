@@ -29,7 +29,8 @@ function EditBlog() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let initialValues = {
-        id:id.id,
+        bid:blog.bid,
+        cid:blog.cid,
         title: blog.title,
         content: blog.content,
         keywords: blog.keywords,
@@ -44,7 +45,7 @@ function EditBlog() {
     const onFormSubmit = (e) => {
       e.preventDefault();
       console.log(blog);
-      dispatch(edit(blog));
+      dispatch(edit(initialValues));
       navigate("/blog-management");
     }
 
