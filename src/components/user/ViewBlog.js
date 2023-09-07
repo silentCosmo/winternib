@@ -38,7 +38,7 @@ function ViewBlog() {
     <div className={`md:p-5 p-1 min-h-[100vh]`} >
         <div className='pb-5 justify-center rounded-sm bg-teal-300 border-teal-600 border-opacity-20 border bg-clip-padding backdrop-filter backdrop-blur-xl text-lg bg-opacity-5'>
         <div>
-        <h1 className='my-5 font-bold text-4xl mx-auto max-w-screen-sm drop-shadow-md text-teal-100'>{blog.title}</h1>
+        <h1 className='my-5 font-extrabold text-2xl mx-auto max-w-screen-sm drop-shadow-md text-teal-200'>{blog.title}</h1>
       </div>
         <div className='flex justify-center'>
         <img className='max-h-80 rounded-md px-1'
