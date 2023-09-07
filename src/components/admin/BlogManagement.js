@@ -7,9 +7,8 @@ import { db } from "../../firebase/config";
 function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
   const [refresh,setRefresh] = useState(false)
-
   const fetchData = async () => {
-    onValue(ref(db,"blogs/"), (snapshot) => {
+    onValue(ref(db,"blogs/1691251712948"), (snapshot) => {
       const data = snapshot.val()
       console.log(data)
       if(data!==null){
@@ -25,7 +24,7 @@ function BlogManagement() {
     fetchData();
     /* setBlogs([{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}
         ,{title:'dgu',keyword:'sdfsf', dedescription:'shagdtgytsdftsyafdtyafsdtygtasy',image:'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80'}]) */
-  }, [refresh]);
+  }, []);
 
   const onDelete = (id) => {
     //instance.delete(`/posts/${id}`)
@@ -34,7 +33,7 @@ function BlogManagement() {
 
   console.log("b");
   return (
-    <div className="flex flex-col gap-2 my-4 h-full">
+    <div className="flex flex-col gap-2 my-4 min-h-screen">
       <NavLink
         to={"/add-blog"}
         className="border border-teal-500 p-2 ml-5 bg-teal-700 text-teal-100 active:bg-teal-800 backdrop-blur-md bg-opacity-30 hover:bg-teal-800 w-[7rem]"

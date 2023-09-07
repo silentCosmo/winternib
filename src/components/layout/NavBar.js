@@ -27,7 +27,8 @@ function NavBar() {
     navto('/login')
     handleMenu()
   }
-  const handleMenu = ()=>{
+  const handleMenu = (select)=>{
+    if(select==='manage'){navto('blog-management')}
     setMenuToggle(!menuToggle)
   }
   /* const [toggle,setToggle] = useState(false)
@@ -49,16 +50,16 @@ function NavBar() {
 
 
           <div className='text-teal-500 hover:animate-bounce text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
-          <div className={`bg-teal-950 rounded-sm border border-teal-600 backdrop-blur-xl bg-opacity-20 absolute top-0 right-0 mt-16 mr-1  ${menuToggle?'':'hidden'}`}>
+          <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 absolute top-0 right-0 mt-16 w-[99.5%] mx-[0.25%] ${menuToggle?'':'hidden'}`}>
 
           { loggedIn?
-          <div className=" flex-col flex gap-2">
-           <div className='mt-1'>
-            <NavLink to={'/blog-management'} onClick={handleMenu} className='bg-teal-950 rounded-sm hover:bg-teal-900  border-teal-600 bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</NavLink>
+          <div className=" flex-row w-screen flex">
+           <div className=''>
+            <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[50vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
           </div>
-        <div>
-          <button onClick={logOut} className='bg-red-800 rounded-sm hover:bg-red-800 border-red-600 bg-opacity-50 text-red-100 hover:text-red-50 w-full px-2 py-1'>LogOut</button>
-        </div>
+          <div>
+            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[50vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
+          </div>
         </div>
         :
         <div className='mt-'>

@@ -12,7 +12,7 @@ function Home() {
   set(ref(db, 'posts/' ), data).then((re)=>{console.log('suc')}).catch((err)=>{console.log(err)})
 } */
   return (
-    <div>
+    <div className='min-h-screen'>
         <ListBlogs/>
     </div>
   )
