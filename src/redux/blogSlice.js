@@ -22,7 +22,7 @@ const blogSlice = createSlice({
         },
         edit:(state,action) => {
             console.log('onEdit:',action.payload);
-            const id = action.payload.id
+            const id = action.payload.bid
             const update = {...action.payload,date: new Date()}
             set(ref(db, 'blogs/' + id), update )
               
