@@ -3,21 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import FileBase64 from 'react-file-base64'
 import { edit } from '../../redux/blogSlice';
+import { onValue, ref } from 'firebase/database';
+import { db } from '../../firebase/config';
 
 function EditBlog() {
     const id = useParams()
+    console.log(id,'id');
     const data = useSelector((state)=>state.blogs)
     console.log(data);
     const [blog,setBlog] = useState({})
     const fetchData = async (id) => {
-        /* const blog = await instance.get(`/posts/${id.id}`).then((response) => {
-          return response.data;
-        });
-        setBlog(blog);
-        console.log("a", blog); */
+      onValue(ref(db,"blogs/"+id), (snapshot) => {
+        const data = snapshot.val()
+        console.log(data)
+        if(data!==null){
+            setBlog(data)
+              
+        }
+        })
       };
       useEffect(()=>{
-        fetchData(id)
+        fetchData(id.id)
       },[id])
 
     const dispatch = useDispatch();
@@ -25,7 +31,7 @@ function EditBlog() {
     let initialValues = {
         id:id.id,
         title: blog.title,
-        description: blog.description,
+        content: blog.content,
         keywords: blog.keywords,
         image: blog.image,
     };
@@ -98,9 +104,9 @@ function EditBlog() {
             rows={4}
             type="text"
             id="description"
-            value={blog.description}
+            value={blog.content}
             onChange={(e) =>
-              setBlog({ ...blog, description: e.target.value })
+              setBlog({ ...blog, content: e.target.value })
             }
             className="shadow-sm bg-gray-950 bg-opacity-40 border border-teal-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-g  dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             required

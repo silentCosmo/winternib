@@ -20,14 +20,20 @@ const blogSlice = createSlice({
             state.bg = action.payload
             console.log(state.bg)
         },
-        /* post:(state,action) => {
-            console.log(action.payload);
-            instance.post('/posts',action.payload)
-        },
         edit:(state,action) => {
             console.log('onEdit:',action.payload);
             const id = action.payload.id
-            instance.put(`/posts/${id}`,action.payload)
+            const update = {
+                title: 'sup',
+                content: 's',
+                profile_picture : 'kj'
+              }
+            set(ref(db, 'blogs/' + id), update )
+              
+        },
+        /* post:(state,action) => {
+            console.log(action.payload);
+            instance.post('/posts',action.payload)
         },
         createUser:(state,action)=>{
             console.log('user',action.payload);

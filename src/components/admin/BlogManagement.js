@@ -8,7 +8,7 @@ function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
   const [refresh,setRefresh] = useState(false)
   const fetchData = async () => {
-    onValue(ref(db,"blogs/1691251712948"), (snapshot) => {
+    onValue(ref(db,"blogs/"), (snapshot) => {
       const data = snapshot.val()
       console.log(data)
       if(data!==null){
@@ -71,9 +71,9 @@ function BlogManagement() {
                   </p>
                 </div>
                   <div className="flex flex-row justify-center mb-2">
-                    <a className="text-green-500 bg-teal-950 border border-teal-700 rounded-l-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" href={`/view-blog/${blog.id}`}>View</a>
-                    <a className="text-blue-500 bg-teal-950 border-y border-teal-700 px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" href={`/edit-blog/${blog.id}`}>Edit</a>
-                    <button className="text-red-500 bg-teal-950 border border-teal-700 rounded-r-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" onClick={()=>onDelete(blog.id)}>Delete</button>
+                    <a className="text-green-500 bg-teal-950 border border-teal-700 rounded-l-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" href={`/view-blog/${blog.bid}`}>View</a>
+                    <a className="text-blue-500 bg-teal-950 border-y border-teal-700 px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" href={`/edit-blog/${blog.bid}`}>Edit</a>
+                    <button className="text-red-500 bg-teal-950 border border-teal-700 rounded-r-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" onClick={()=>onDelete(blog.bid)}>Delete</button>
                 </div>
               </div>
                 

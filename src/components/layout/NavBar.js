@@ -50,7 +50,7 @@ function NavBar() {
 
 
           <div className='text-teal-500 hover:animate-bounce text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
-          <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 absolute top-0 right-0 mt-16 w-[99.5%] mx-[0.25%] ${menuToggle?'':'hidden'}`}>
+          <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 absolute top-0 right-0 mt-16 w-[99%] mr-[0.5%] ${menuToggle?'':'hidden'}`}>
 
           { loggedIn?
           <div className=" flex-row w-screen flex">
