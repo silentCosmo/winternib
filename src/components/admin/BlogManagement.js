@@ -13,7 +13,7 @@ function BlogManagement() {
       console.log(data)
       if(data!==null){
           Object.values(data).map((blog)=>{
-            setBlogs((oldArr)=>[...oldArr,blog])
+            setBlogs((oldArr)=>[...oldArr,blog].reverse())
             console.log('blog');
             return 0
         })
