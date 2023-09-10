@@ -41,25 +41,24 @@ function NavBar() {
 
   return (
     <div className='sticky top-0 p-3 z-20 h-full w-full bg-teal-300 shadow-teal-700 shadow-sm rounded-b-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
-        <header className='flex flex-row justify-between mx-3'>
-        <div>
+        <header className='flex flex-col justify-between mx-3'>
+        <div className='flex-row flex justify-between'>
           <NavLink to={'/'} className='text-teal-400 text-3xl font-bold'>{appName}</NavLink>
           {/* <button onClick={themeMode}>Dark</button> = Theme change beta*/}
-        </div>
+        
         {/* </header>{ loggedIn? */}
         
-
-
-          <div className='text-teal-500 hover:animate-bounce text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
-          <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 absolute top-0 right-0 mt-16 w-[99%] mr-[0.5%] ${menuToggle?'':'hidden'}`}>
+          <div className='text-teal-500 hover:animate-ping text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
+          </div>
+          <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 top- right- mt-4 w-[99%] mr-[0.5%] ${menuToggle?'':'hidden'}`}>
 
           { loggedIn?
           <div className=" flex-row w-screen flex">
            <div className=''>
-            <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[49vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
+            <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[45vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
           </div>
           <div>
-            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[49vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
+            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[45vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
           </div>
         </div>
         :

@@ -12,3 +12,18 @@ export const appTheme = {
     appBg: 'https://media.istockphoto.com/id/1396083727/photo/green-blue-rock-texture-toned-rough-mountain-surface-texture-crumbled-close-up.webp?b=1&s=170667a&w=0&k=20&c=4XGQ6EEqtgSIW-kmi9Eb7b6Y_orxj-K5tNWthX2FIxA='
     //bgIm:style={{backgroundImage: `url(${blog.image})`}}
 }
+
+export const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      const truncatedText = text.slice(0, maxLength);
+      const lastSpaceIndex = truncatedText.lastIndexOf(' ');
+
+      if (lastSpaceIndex !== -1) {
+        return truncatedText.slice(0, lastSpaceIndex) + '.';
+      } else {
+        return truncatedText + '.';
+      }
+    } else {
+      return text;
+    }
+  };

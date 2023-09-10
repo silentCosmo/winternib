@@ -9,17 +9,17 @@ function SignUp() {
   console.log(userData);
 
   //const dispatch = useDispatch()
-  
-  const onSubmit = (e)=> {
-    e.preventDefault()
-        if(userData.password===userData.confirmpass){
-            alert('input success!')
-            //const user = {email:userData.email,password:userData.password}
-            //dispatch(createUser(user))
-        }else{
-            alert('password confirmation failed!')
-        }
-  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (userData.password === userData.confirmpass) {
+      alert("input success!");
+      //const user = {email:userData.email,password:userData.password}
+      //dispatch(createUser(user))
+    } else {
+      alert("password confirmation failed!");
+    }
+  };
   return (
     <div>
       <section className="bg-gray-50">
@@ -104,10 +104,7 @@ function SignUp() {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="terms"
-                      className="font-light text-teal-700"
-                    >
+                    <label htmlFor="terms" className="font-light text-teal-700">
                       I accept the{" "}
                       <a
                         className="font-medium text-teal-600 hover:underline"
@@ -121,7 +118,7 @@ function SignUp() {
                 <button
                   type="submit"
                   className="w-full text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                  onClick={(e)=>onSubmit(e)}
+                  onClick={(e) => onSubmit(e)}
                 >
                   Create an account
                 </button>

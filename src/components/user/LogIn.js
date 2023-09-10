@@ -1,16 +1,15 @@
-import React from 'react'
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { ImGoogle } from 'react-icons/im'
-import { appName, appTheme } from '../layout/LayoutVariables';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { ImGoogle } from "react-icons/im";
+import { appName, appTheme } from "../layout/LayoutVariables";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from '../../firebase/config';
-import { userAuth, userState } from '../../redux/blogSlice';
-
+import { auth, provider } from "../../firebase/config";
+import { userAuth, userState } from "../../redux/blogSlice";
 
 function LogIn() {
-  const navto = useNavigate()
-    /*const dispatch = useDispatch()
+  const navto = useNavigate();
+  /*const dispatch = useDispatch()
      const [userData,setUserData] = useState({
         email:'',
         password:'',
@@ -25,64 +24,70 @@ function LogIn() {
         dispatch(auth(userData))
     }*/
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const handleSignIn = ()=>{
-      alert('signUp')
-      signInWithPopup(auth, provider)
+  const handleSignIn = () => {
+    alert("signUp");
+    signInWithPopup(auth, provider)
       .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
+        // This gives you a Google Access Token. You can use it to access the Google API.
 
-    //const credential = GoogleAuthProvider.credentialFromResult(result);
-    //const token = credential.accessToken;
+        //const credential = GoogleAuthProvider.credentialFromResult(result);
+        //const token = credential.accessToken;
 
-    // The signed-in user info.
-    const user = result.user;
-    const userData = {
-      uid:user.uid,
-      name:user.displayName,
-      email:user.email,
-      avatar:user.photoURL,
-    }
-    dispatch(userAuth(userData))
-    dispatch(userState(true))
-    navto('/')
-    
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    /* const errorCode = error.code;
+        // The signed-in user info.
+        const user = result.user;
+        const userData = {
+          uid: user.uid,
+          name: user.displayName,
+          email: user.email,
+          avatar: user.photoURL,
+        };
+        dispatch(userAuth(userData));
+        dispatch(userState(true));
+        navto("/");
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        /* const errorCode = error.code;
     const errorMessage = error.message; */
-    // The email of the user's account used.
-    //const email = error.customData.email;
-    // The AuthCredential type that was used.
-    //const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
-  /* const userData = {
+        // The email of the user's account used.
+        //const email = error.customData.email;
+        // The AuthCredential type that was used.
+        //const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+    /* const userData = {
     id:'7777777',
     name:'user.displayName',
     email:'user.email',
     avatar:'user.photoURL',
   } */
-    
-    }
+  };
 
   return (
     <div className="h-[90vh]">
-    <section>
-    <div className="flex flex-col items-center justify-center px-6 py-8 mt-20 mx-auto md:h-screen lg:py-0">
-      <a href="/" className="flex items-center text-2xl font-semibold text-teal-400">
-          LogIn to {appName}   
-      </a>
-      <div className="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-teal-00 bg-clip-padding backdrop-blur-sm bg-opacity-10 border-teal-0">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 flex flex-col items-center text-center">
+      <section>
+        <div className="flex flex-col items-center justify-center px-6 py-8 mt-20 mx-auto md:h-screen lg:py-0">
+          <a
+            href="/"
+            className="flex items-center text-2xl font-semibold text-teal-400"
+          >
+            LogIn to {appName}
+          </a>
+          <div className="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0 bg-teal-00 bg-clip-padding backdrop-blur-sm bg-opacity-10 border-teal-0">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8 flex flex-col items-center text-center">
               {/* <h1 className="text-xl font-bold leading-tight tracking-tight text-teal-950 md:teal-2xl">
                   Sign in to your account
               </h1> */}
-              <div onClick={handleSignIn} className={`${appTheme.glassBox} w-fit p-3 rounded-sm text-teal-300 hover:text-teal-100 hover:bg-teal-800 hover:scale-95 active:bg-teal-900 duration-300 flex flex-row`}>
-                <ImGoogle className='mt-1'/>
+              <div
+                onClick={handleSignIn}
+                className={`${appTheme.glassBox} w-fit p-3 rounded-sm text-teal-300 hover:text-teal-100 hover:bg-teal-800 hover:scale-95 active:bg-teal-900 duration-300 flex flex-row`}
+              >
+                <ImGoogle className="mt-1" />
                 <h3>&nbsp; SignIn with Google</h3>
               </div>
               {/* <form className="space-y-4 md:space-y-6" action="#">
@@ -113,9 +118,9 @@ function LogIn() {
             </div>
           </div>
         </div>
-    </section>
+      </section>
     </div>
-  )
+  );
 }
 
-export default LogIn
+export default LogIn;
