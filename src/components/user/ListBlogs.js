@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
 import { appTheme } from '../layout/LayoutVariables';
+import Loading from '../layout/Loading';
 
 function ListBlogs() {
   const [blogs, setBlogs] = useState([]);
+  const [loading,setLoading] = useState(true)
   /* const [refresh,setRefresh] = useState(false) */
   const navto = useNavigate()
   /* const fetchData = async () => {
@@ -34,6 +36,7 @@ function ListBlogs() {
     if(data!==null){
         Object.values(data).map((blog)=>{
           setBlogs((oldArr)=>[...oldArr,blog].reverse())
+          setLoading(false)
           console.log('blog');
           return 0
       })
@@ -81,6 +84,8 @@ function ListBlogs() {
   return (
     <div className='md:my-5'>
         <div className="flex justify-center">
+      {
+        loading?<Loading/>:
         <div className="grid md:grid-cols-3 p-2 grid-cols-1 gap-2 md:gap-20">
         {blogs.map((blog) => {
           return (
@@ -115,6 +120,7 @@ function ListBlogs() {
           );
         })}
         </div>
+      }
       </div>
     </div>
   )
