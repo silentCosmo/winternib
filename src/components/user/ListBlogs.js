@@ -65,8 +65,8 @@ function ListBlogs() {
                   <div className="text-right hidden md:block w-[48vw]">
                     <BlogsCardPc blog={blog} />
                   </div>
-                  <div key={blog.bid} className="flex flex-row mt-1 overflow-hidden md:hidden">
-                    <div className="md:w-[19rem] h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-700 hover:scale-95 duration-75">
+                  <div key={blog.bid} className="flex flex-row mt-1 md:hidden">
+                    <div className="md:w-[19rem] h-full mb-2 overflow-hidden bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-700 hover:scale-95 duration-75">
                       <div className="h-60 hover:h-56 overflow-hidden">
                         <img
                           className="rounded-t-lg h-60 w-full object-cover hover:scale-125 transition duration-700"
