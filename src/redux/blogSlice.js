@@ -23,7 +23,7 @@ const blogSlice = createSlice({
         edit:(state,action) => {
             console.log('onEdit:',action.payload);
             const id = action.payload.bid
-            const date = new Date()
+            const date = new Date().toDateString()
             const update = {...action.payload, date:date}
             console.log(update);
             set(ref(db, 'blogs/' + id), update )
@@ -85,7 +85,7 @@ const blogSlice = createSlice({
         createBlog:(state,action)=>{
             console.log(state.user.uid);
             const bid = Date.now()
-            const date = new Date()
+            const date = new Date().toDateString()
             console.log(date);
             const newBlog = {...action.payload, cid:state.user.uid, date: date, bid:bid }
             console.log(date);
