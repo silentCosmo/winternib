@@ -58,12 +58,12 @@ function NavBar() {
             <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[45vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
           </div>
           <div>
-            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[45vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
+            <button onClick={logOut} className='hover:bg-teal-900 border-l border-teal-700 hover:bg-opacity-50 w-[45vw] md:w-[50.3vw] text-teal-200 hover:text-red-100 px-2 py-2'>LogOut</button>
           </div>
         </div>
         :
         <div className='mt-'>
-          <button onClick={()=>handleMenu('login')} className='px-2 py-2 w-full hover:bg-teal-800 text-teal-400 bg-clip-padding backdrop-filter backdrop-blur-sm hover:bg-opacity-30'>LogIn</button>
+          <button onClick={()=>handleMenu('login')} className='px-2 py-2 w-full rounded-md hover:bg-teal-800 text-teal-400 bg-clip-padding backdrop-filter backdrop-blur-sm hover:bg-opacity-30'>LogIn</button>
         </div> 
         
         }

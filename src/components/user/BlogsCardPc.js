@@ -45,7 +45,6 @@ function BlogsCardPc({ blog }) {
               {blog.content.length > 150 || blog.title.length > 70
                 ? blog.content.slice(0, 140 - blog.title.length)
                 : blog.content}
-              {blog.title.length}
               <span className="font-bold opacity-80 cursor-pointer">
                 {blog.content.length > 150 ? "...Read more" : ""}
               </span>
