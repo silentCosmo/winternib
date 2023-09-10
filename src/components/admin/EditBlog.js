@@ -50,7 +50,7 @@ function EditBlog() {
     }
 
   return (
-    <div className=" text-teal-200 p-5">
+    <div className="h-screen text-teal-200 p-5">
       <h3 className='mb-2 text-lg font-bold text-teal-400'>EDIT BLOG</h3>
 
       <form

@@ -22,7 +22,7 @@ function AddBlog() {
     navigate("/blog-management");
   };
   return (
-    <div className=" text-teal-300 p-5">
+    <div className="h-screen text-teal-300 p-5">
       <h3 className="mb-2 font-bold text-lg text-teal-400">ADD BLOG</h3>
 
       <form

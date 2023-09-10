@@ -10,32 +10,16 @@ function ListBlogs() {
   const [loading,setLoading] = useState(true)
   /* const [refresh,setRefresh] = useState(false) */
   const navto = useNavigate()
-  /* const fetchData = async () => {
-    const blogs = await instance.get("/posts").then((response) => {
-      return response.data;
-    })
-    setBlogs(blogs);
-    console.log("a", blogs);
-  } */
 
   const getBlogs = ()=>{ 
-    
-    /* ref(db, 'posts/' + 0 );
-    onValue(getBlogs, (snapshot) => {
-    const data = snapshot.val()
-    console.log('postElement', data);
-  }) */
-
-  //const userId = 'DzyeOEdcryaJlqn4sdPlm8mPL0o2'
-  //const dbRef = ref(getDatabase())
   console.log('Hiiii')
-
   onValue(ref(db,"blogs/"), (snapshot) => {
     const data = snapshot.val()
     console.log(data)
     if(data!==null){
         Object.values(data).map((blog)=>{
-          setBlogs((oldArr)=>[...oldArr,blog].reverse())
+          setBlogs((oldArr)=>[...oldArr,blog])
+          blogs.reverse()
           setLoading(false)
           console.log('blog');
           return 0
@@ -45,52 +29,25 @@ function ListBlogs() {
   
   console.log(blogs);
 
-  /* get(child(dbRef, `users/`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-      const blogs = snapshot.val()
-      //const array = Object.entries(blogs)
-      //console.log(array);
-      //setBlogs(blogs)
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
-  }) */
-
-  /* dbRef.on("posts/", (snapshot) => {
-    const data = snapshot.val();
-    console.log('lk',data);
-    // data is an array
-  }) */
-
  }
 
   useEffect(() => {
     getBlogs()
-    /* fetchData().catch((err)=>{
-      if(err.code==='ERR_NETWORK'){
-        console.log('JSON ERROR',err.code)
-      }
-    }) */
     //eslint-disable-next-line
   }, []);
   const onClick = (id)=>{
-    //const lowercaseTitle = id.toLowerCase();
-    //const urlId = lowercaseTitle.replace(/[^\w\s]/g, '-').replace(/\s+/g, '-')
     navto(`/view-blog/${id}`)
   }
   return (
     <div className='md:my-5'>
         <div className="flex justify-center">
       {
-        loading?<Loading/>:
+        loading?  <Loading/>  :
         <div className="grid md:grid-cols-3 p-2 grid-cols-1 gap-2 md:gap-20">
         {blogs.map((blog) => {
           return (
             <div onClick={()=>onClick(blog.bid)} key={blog.bid} className="flex flex-row mt-1">
-              <div className="md:w-[19rem] w- h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
+              <div className="md:w-[19rem] h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-600 hover:scale-95 duration-100">
                 <div>
                   <img
                     className="rounded-t-lg h-56 w-full object-cover"

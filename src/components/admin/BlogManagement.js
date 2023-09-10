@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { onValue, ref, remove } from "firebase/database";
 import { db } from "../../firebase/config";
+import Loading from "../layout/Loading";
 
 function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true)
   const [refresh,setRefresh] = useState(false)
   const fetchData = async () => {
     onValue(ref(db,"blogs/"), (snapshot) => {
@@ -14,6 +16,7 @@ function BlogManagement() {
       if(data!==null){
           Object.values(data).map((blog)=>{
             setBlogs((oldArr)=>[...oldArr,blog].reverse())
+            setLoading(false)
             console.log('blog');
             return 0
         })
@@ -43,6 +46,7 @@ function BlogManagement() {
       </div>
       
       <div className="flex justify-center">
+        { loading?  <Loading/>  :
         <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-2">
         {blogs.map((blog) => {
           return (
@@ -79,6 +83,7 @@ function BlogManagement() {
           );
         })}
         </div>
+        }
       </div>
     </div>
   );
