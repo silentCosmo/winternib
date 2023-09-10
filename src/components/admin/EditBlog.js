@@ -31,6 +31,7 @@ function EditBlog() {
     let initialValues = {
         bid:blog.bid,
         cid:blog.cid,
+        date:blog.date,
         title: blog.title,
         content: blog.content,
         keywords: blog.keywords,

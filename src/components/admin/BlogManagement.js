@@ -10,18 +10,16 @@ function BlogManagement() {
   const [loading, setLoading] = useState(true)
   const [refresh,setRefresh] = useState(false)
   const fetchData = async () => {
-    onValue(ref(db,"blogs/"), (snapshot) => {
-      const data = snapshot.val()
-      console.log(data)
-      if(data!==null){
-          Object.values(data).map((blog)=>{
-            setBlogs((oldArr)=>[...oldArr,blog].reverse())
-            setLoading(false)
-            console.log('blog');
-            return 0
-        })
+    onValue(ref(db, "blogs/"), (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+    
+      if (data !== null) {
+        const blogsArray = Object.values(data).map((blog) => blog);
+        setBlogs(blogsArray.reverse());
+        setLoading(false);
       }
-    })
+    });    
   };
   useEffect(() => {
     fetchData();
@@ -61,12 +59,12 @@ function BlogManagement() {
                 </div>
                 <div class="p-3">
                   <div>
-                    <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-teal-600">
+                    <h5 class="mb-1 text-2xl font-bold overflow-x-scroll tracking-tight text-gray-900 dark:text-teal-600">
                       {blog.title}
                     </h5>
                   </div>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 w-full overflow-hidden h-12">
-                    {blog.description}
+                    {blog.content}
                   </p>
                   <p class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-teal-400 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:hover:bg-teal-700 dark:focus:teal-blue-900">
                     {blog.keywords}
