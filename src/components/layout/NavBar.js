@@ -48,12 +48,12 @@ function NavBar() {
         
         {/* </header>{ loggedIn? */}
         
-          <div className='text-teal-500 hover:animate-ping text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
+          <div className='text-teal-500 hover:animate-spin text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
           </div>
           <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 top- right- mt-4 w-[99%] mr-[0.5%] ${menuToggle?'':'hidden'}`}>
 
           { loggedIn?
-          <div className=" flex-row w-screen flex">
+          <div className=" flex-row flex">
            <div className=''>
             <div to={'/blog-management'} onClick={()=>handleMenu('manage')} className='hover:bg-teal-900 w-[45vw] border-red-600 hover:bg-opacity-50 text-teal-200 hover:text-teal-100 px-2 py-2'>ManageBlogs</div>
           </div>
