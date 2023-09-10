@@ -48,7 +48,7 @@ function NavBar() {
         
         {/* </header>{ loggedIn? */}
         
-          <div className='text-teal-500 hover:animate-spin text-2xl animate-spin-slow' onClick={handleMenu}>&#10052;</div>
+          <div className='text-teal-500 opacity-90 hover:animate-pulse animate-spin-slow text-2xl' onClick={handleMenu}>&#10052;</div>
           </div>
           <div className={`bg-teal-950 rounded-md border border-teal-700 backdrop-blur-xl bg-opacity-20 top- right- mt-4 w-[99%] mr-[0.5%] ${menuToggle?'':'hidden'}`}>
 

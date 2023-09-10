@@ -24,7 +24,7 @@ function BlogManagement() {
   useEffect(() => {
     fetchData();
   }, [refresh]);
-
+  
   const onDelete = (id) => {
     remove(ref(db, "blogs/" + id));
     setRefresh(!refresh);
