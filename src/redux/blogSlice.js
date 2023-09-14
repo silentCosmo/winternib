@@ -47,7 +47,7 @@ const blogSlice = createSlice({
         createBlog:(state,action)=>{
             console.log(state.user.uid);
             const bid = Date.now()
-            const date = new Date().toLocaleDateString("en-uk")
+            const date = new Date().toLocaleDateString("en-US")
             console.log(date);
             const newBlog = {...action.payload, cid:state.user.uid, date: date, bid:bid }
             console.log(date);
