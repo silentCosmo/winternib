@@ -10,9 +10,9 @@ function ListBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   /* const [refresh,setRefresh] = useState(false) */
-  const sameYear = { month: "short", day: "numeric" };
-  const prevYear = { month: "short", day: "numeric", year: "numeric" };
-  const thisYear = new Date().getFullYear();
+  //const sameYear = { month: "short", day: "numeric" };
+  //const prevYear = { month: "short", day: "numeric", year: "numeric" };
+  //const thisYear = new Date().getFullYear();
   const navto = useNavigate();
 
   const getBlogs = () => {
