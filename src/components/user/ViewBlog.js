@@ -51,7 +51,7 @@ function ViewBlog() {
           <hr className="mt-6 w-[87.5vw] border border-teal-200 border-opacity-20" />
         </div>
         <div className="mt-4 md:px-16 px-3">
-          <p className="  drop-shadow-md text-teal-100">
+          <p className=" whitespace-break-spaces drop-shadow-md text-teal-100">
             {blog.content}
           </p>
           <h1>{blog.keyword}</h1>
