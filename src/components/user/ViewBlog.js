@@ -5,14 +5,20 @@ import { db } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { bg } from "../../redux/blogSlice";
 import { appTheme } from "../layout/LayoutVariables";
+import Loading from "../layout/Loading";
 
 function ViewBlog() {
   const { id } = useParams();
   const disp = useDispatch();
   const [blog, setBlog] = useState({});
+  const [isLoading,setIsLoading] = useState(true)
+
+  console.log(isLoading);
+
   const fetchData = async (id) => {
     await onValue(ref(db, `blogs/${id}`), (snapshot) => {
       const data = snapshot.val();
+      setIsLoading(false);
       setBlog(data);
       disp(bg(data.image ? data.image : appTheme.noImg));
       console.log(data);
@@ -33,30 +39,32 @@ function ViewBlog() {
   }, [id]);
 
   return (
-    <div className={`md:p-5 p-1 min-h-[100vh]`}>
-      <div className="pb-5 justify-center rounded-sm bg-teal-300 border-teal-600 border-opacity-20 border bg-clip-padding backdrop-filter backdrop-blur-xl text-lg bg-opacity-5">
+    <div className={`md:p-5 md:px-[20%] p-1 min-h-screen`}>
+      { isLoading?<Loading/>:
+      <div className="pb-5 justify-center rounded-sm bg-slate-950 border-cyan-600 border-opacity-20 border  backdrop-filter backdrop-blur- text-lg bg-opacity-60">
         <div>
-          <h1 className="my-5 font-extrabold text-2xl mx-auto max-w-screen-lg drop-shadow-md opacity-75 text-teal-100">
+          <h1 className="my-5 font-extrabold text-2xl max-w-[83%] mx-auto md:max-w-screen-lg drop-shadow-md opacity-75 text-cyan-100">
             {blog.title}
           </h1>
         </div>
         <div className="flex justify-center">
           <img
-            className="max-h-80 rounded-md px-1"
+            className="md:h-[32rem] h-[25rem] w-[80%] object-cover rounded-md px-1"
             src={blog.image ? blog.image : appTheme.noImg}
             alt="Blog Img"
           />
         </div>
+
         <div className="flex justify-center">
-          <hr className="mt-6 w-[87.5vw] border border-teal-200 border-opacity-20" />
+          <hr className="mt-8 w-11/12 border border-cyan-200 border-opacity-20" />
         </div>
-        <div className="mt-4 md:px-16 px-3">
-          <p className="text-md text-left whitespace-break-spaces drop-shadow-md text-teal-100">
+        <div className="md:px-16 px-4 py-6">
+          <p className="text-base text-start whitespace-break-spaces drop-shadow-md text-cyan-50 opacity-50 tracking-wider leading-7">
             {blog.content}
           </p>
           <h1>{blog.keyword}</h1>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

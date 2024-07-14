@@ -23,8 +23,8 @@ code {
   width: 10px;
 }
 ::-webkit-scrollbar-track{
-  background: rgba(0, 128, 128, 0.297);
+  background: #082f49;
 }
 ::-webkit-scrollbar-thumb{
-  background: rgb(45, 215, 191);
+  background: #0891b2;
 }

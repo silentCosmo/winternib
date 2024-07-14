@@ -3,7 +3,7 @@ import ListBlogs from "./ListBlogs";
 
 function Home() {
   return (
-    <div className="min-h-[87vh]">
+    <div className="min-h-[calc(100vh-6rem)]">
       <ListBlogs />
     </div>
   );

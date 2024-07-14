@@ -1,10 +1,10 @@
 
 
-export const appName = 'SHISHIRAM'
+export const appName = '𝔀𝓲𝓷𝓽𝓮𝓻𝓷𝓲𝓫'
 export const appTheme = {
     primary:'text-teal-600',
     hover:'hover:scale-95 duration-300',
-    glassBox:'bg-teal-300 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-teal-300',
+    glassBox:'bg-cyan-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-cyan-700',
     dark: 'bg-gray-950 text-teal-100',
     light: 'text-teal-950',
     noImg: 'https://images.unsplash.com/photo-1534577403868-27b805ca4b9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMHRlYWx8ZW58MHx8MHx8fDA%3D&w=1000&q=80',

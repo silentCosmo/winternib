@@ -41,3 +41,81 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+.loader {
+  width: 200px;
+  height: 150px;
+  background: #155e75;
+  box-sizing: border-box;
+  position: relative;
+  border-radius:4px;
+  perspective: 200px;
+}
+
+.loader:before{
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius:5px;
+  background: #0891b2  no-repeat;
+  background-size: 60px 10px;
+  background-image: 	linear-gradient(#0e7490 100px, transparent 0) ,
+                      linear-gradient(#0e7490 100px, transparent 0), 
+                      linear-gradient(#0e7490 100px, transparent 0), 
+                      linear-gradient(#0e7490 100px, transparent 0), 
+                      linear-gradient(#0e7490 100px, transparent 0), 
+                      linear-gradient(#0e7490 100px, transparent 0);
+  
+  background-position: 15px 30px , 15px 60px , 15px 90px, 
+            105px 30px , 105px 60px , 105px 90px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+.loader:after {
+  content: '';
+    position: absolute;
+    width: calc(50% - 10px);
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    border-radius: 8px;
+    background: #1083a3 no-repeat;
+    background-size: 60px 10px;
+    background-image: linear-gradient(#155e75 100px, transparent 0), 
+                      linear-gradient(#155e75 100px, transparent 0), 
+                      linear-gradient(#155e75 100px, transparent 0);
+    background-position: 50% 30px ,50% 60px , 50%  90px;
+    transform: rotateY(0deg );
+    transform-origin: left center;
+  animation: paging 0.3s linear infinite;
+}
+
+
+@keyframes paging {
+  to {
+    transform: rotateY( -180deg );
+  }
+}
+
+
+/* Add this to your CSS file */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #00bcd4; /* Customize spinner color */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

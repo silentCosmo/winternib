@@ -1,5 +1,5 @@
 import './App.css';
-import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Navigate, Outlet, RouterProvider, ScrollRestoration, createBrowserRouter } from 'react-router-dom';
 import BlogManagement from './components/admin/BlogManagement';
 import AddBlog from './components/admin/AddBlog';
 import Home from './components/user/Home';
@@ -32,7 +32,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <><NavBar/><Outlet/><Footer/></>,
+      element: <><NavBar/><ScrollRestoration /><Outlet/><Footer/></>,
       children:[
     {
       path: '/',
@@ -67,7 +67,7 @@ function App() {
 
   return (
     <div className="App bg-zinc-50" style={{ backgroundImage: `url(${bgIm?bgIm:appTheme.appBg})`, backgroundRepeat: 'round' }} >
-      <div className=' backdrop-blur-md'>
+      <div className=' backdrop-blur-md  bg-slate-950 bg-opacity-70'>
         <RouterProvider router={router}/>
       </div>
     </div>
