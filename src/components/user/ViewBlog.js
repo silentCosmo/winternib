@@ -43,7 +43,7 @@ function ViewBlog() {
       { isLoading?<Loading/>:
       <div className="pb-5 justify-center rounded-sm bg-slate-950 border-cyan-600 border-opacity-20 border  backdrop-filter backdrop-blur- text-lg bg-opacity-60">
         <div>
-          <h1 className="my-5 font-extrabold text-2xl max-w-[83%] mx-auto md:max-w-screen-lg drop-shadow-md opacity-75 text-cyan-100">
+          <h1 className="my-5 font-extrabold text-xl max-w-[83%] mx-auto md:max-w-screen-lg drop-shadow-md opacity-75 text-cyan-100">
             {blog.title}
           </h1>
         </div>
@@ -59,7 +59,7 @@ function ViewBlog() {
           <hr className="mt-8 w-11/12 border border-cyan-200 border-opacity-20" />
         </div>
         <div className="md:px-16 px-4 py-6">
-          <p className="text-base text-start whitespace-break-spaces drop-shadow-md text-cyan-50 opacity-50 tracking-wider leading-7">
+          <p className="md:text-lg text-sm text-start whitespace-break-spaces drop-shadow-md text-cyan-50 opacity-50 tracking-wider leading-7">
             {blog.content}
           </p>
           <h1>{blog.keyword}</h1>

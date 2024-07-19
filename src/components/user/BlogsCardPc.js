@@ -13,7 +13,7 @@ function BlogsCardPc({ blog }) {
   return (
     <div>
       <div key={blog.bid} className="flex flex-row mt-1">
-        <div className="mx-auto w-full flex items-center h-full mb-2 bg-teal-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-teal-900 rounded-lg shadow-md hover:shadow-teal-700 hover:scale-95 duration-75">
+        <div className="mx-auto w-full flex items-center h-full mb-2 bg-cyan-700 bg-inherit backdrop-blur-2xl bg-opacity-5 border border-cyan-900 rounded-lg shadow-md hover:shadow-cyan-700 hover:scale-95 duration-75">
           <div className="h-56 w-64 overflow-hidden">
             <img
               className="rounded-l-lg h-56 w-64 object-cover hover:scale-125 transition duration-600"
@@ -23,11 +23,11 @@ function BlogsCardPc({ blog }) {
           </div>
           <div className="flex-1 p-3">
             <div className="text-left">
-              <h5 className="mb-1 text-2xl font-bold tracking-tight overflow-hidden text-teal-50 opacity-80">
+              <h5 className="mb-1 text-2xl font-bold tracking-tight overflow-hidden text-cyan-50 opacity-80">
                 {blog.title}
               </h5>
               <div className="">
-                <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-gray-400 bg-teal-600 bg-opacity-20 rounded-md hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-teal-700 dark:focus:teal-blue-900">
+                <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-gray-400 bg-cyan-600 bg-opacity-20 rounded-md hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-cyan-700 dark:focus:cyan-blue-900">
                   {thisYear === new Date(blog.date).getFullYear()
                     ? new Date(blog.date)
                         .toLocaleDateString("en-US", sameYear)

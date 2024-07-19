@@ -15,7 +15,7 @@ function ListBlogs() {
   const prevYear = { month: "short", day: "numeric", year: "numeric" };
   const thisYear = new Date().getFullYear();
   const navto = useNavigate();
-  const BLOGS_BATCH_SIZE = 5;
+  const BLOGS_BATCH_SIZE = 10;
 
   const fetchBlogs = (key = null) => {
     setLoading(true);
