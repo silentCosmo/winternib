@@ -17,8 +17,10 @@ import { appTheme } from './components/layout/LayoutVariables';
 function App() {
   //const [auth,setAuth] = useState(false)
   //const disp = useDispatch()
-  const auth = useSelector((state)=>state.blogs.user)
+  //const auth = useSelector((state)=>state.blogs.user)
+  const auth = JSON.parse(localStorage.getItem('auth'))
   const bgIm = useSelector((state)=>state.blogs.bg)
+  console.log(auth);
 
   useEffect(()=>{
     /* const auth = localStorage.getItem('auth')
