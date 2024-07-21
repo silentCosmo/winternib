@@ -3,19 +3,20 @@ import { useDispatch } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 import { edit } from "../../redux/blogSlice";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { onValue, ref } from "firebase/database";
 import { db } from "../../firebase/config";
 import Loading from "../layout/Loading";
 
 // Utility function to format a date as yyyy-MM-dd
 const formatDateForInput = (dateStr) => {
-  const date = new Date(dateStr);
-  return date.toISOString().split('T')[0];
+  const [month, day, year] = dateStr.split('/');
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 };
 
-// Utility function to format a date from yyyy-MM-dd to ISO string
-const formatDateForISO = (dateStr) => {
-  return new Date(dateStr).toISOString();
+// Utility function to format a date from yyyy-MM-dd to MM/dd/yyyy
+const formatDateForDisplay = (dateStr) => {
+  const [year, month, day] = dateStr.split('-');
+  return `${month}/${day}/${year}`;
 };
 
 function EditBlog() {
@@ -25,17 +26,16 @@ function EditBlog() {
   const navigate = useNavigate();
 
   const fetchData = async (id) => {
-    const docRef = doc(db, "blogs", id);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      // Convert date format to yyyy-MM-dd for the input field
-      data.date = formatDateForInput(data.date);
-      setBlog(data);
-    } else {
-      console.error("Blog not found");
-    }
+    onValue(ref(db, "blogs/" + id), (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        // Convert date format to yyyy-MM-dd for the input field
+        data.date = formatDateForInput(data.date);
+        setBlog(data);
+      } else {
+        console.error("Blog not found");
+      }
+    });
   };
 
   useEffect(() => {
@@ -63,22 +63,15 @@ function EditBlog() {
     }
   };
 
-  const onFormSubmit = async (e) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
-    // Convert date format to ISO string
+    // Convert date format back to MM/dd/yyyy if needed
     const updatedBlog = {
       ...blog,
-      date: formatDateForISO(blog.date),
+      date: formatDateForDisplay(blog.date),
     };
-
-    try {
-      const docRef = doc(db, "blogs", id);
-      await updateDoc(docRef, updatedBlog);
-      dispatch(edit(updatedBlog));
-      navigate("/blog-management");
-    } catch (error) {
-      console.error("Error updating blog:", error);
-    }
+    dispatch(edit(updatedBlog));
+    navigate("/blog-management");
   };
 
   return (

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
-import { onValue, ref, remove } from "firebase/database";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import Loading from "../layout/Loading";
 
@@ -9,30 +8,37 @@ function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
-  
-  const fetchData = async () => {
-    onValue(ref(db, "blogs/"), (snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
+  const user = JSON.parse(localStorage.getItem('auth'))
 
-      if (data !== null) {
-        const blogsArray = Object.values(data).map((blog) => blog);
-        setBlogs(blogsArray.reverse());
-        setLoading(false);
-      }
-    });
+  const fetchData = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const blogsArray = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((blog) => blog.uid === user.uid);
+      setBlogs(blogsArray.reverse());
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [refresh]);
-  
-  const onDelete = (id) => {
-    remove(ref(db, "blogs/" + id));
-    setRefresh(!refresh);
+
+  const onDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+    if (confirmDelete) {
+      try {
+        await deleteDoc(doc(db, "blogs", id));
+        setRefresh(!refresh);
+      } catch (error) {
+        console.error("Error deleting blog:", error);
+      }
+    }
   };
 
-  console.log("b");
   return (
     <div className="flex flex-col gap-2 my-4 min-h-screen">
       <NavLink
@@ -49,55 +55,53 @@ function BlogManagement() {
         {loading ? (
           <Loading />
         ) : (
-          <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-2">
-            {blogs.map((blog) => {
-              return (
-                <div className="flex flex-row mt-1">
-                  <div className="md:w-[15rem] w-44 h-full mb-2 bg-white border border-cyan-800 rounded-lg shadow-md backdrop-filter backdrop-blur-xl bg-opacity-5">
+          <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-1">
+            {blogs.map((blog) => (
+              <div key={blog.id} className="flex flex-row">
+                <div className="md:w-[15rem] w-48 h-full mb-2 bg-white border border-cyan-800 rounded-sm shadow-md backdrop-filter backdrop-blur-xl bg-opacity-5">
+                  <div>
+                    <img
+                      className="rounded-t-sm h-52 w-full object-cover hover:object-none bg-zinc-50"
+                      src={blog.image}
+                      alt=""
+                    />
+                  </div>
+                  <div className="p-3">
                     <div>
-                      <img
-                        className="rounded-t-lg h-52 w-full object-cover hover:object-none bg-zinc-50"
-                        src={blog.image}
-                        alt=""
-                      />
+                      <h5 className="mb-1 text-sm font-extrabold overflow-x-auto tracking-tight text-gray-400">
+                        {blog.title}
+                      </h5>
                     </div>
-                    <div class="p-3">
-                      <div>
-                        <h5 class="mb-1 text-xl font-bold overflow-x-auto tracking-tight text-cyan-600">
-                          {blog.title}
-                        </h5>
-                      </div>
-                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 w-full overflow-hidden h-12">
-                        {blog.content}
-                      </p>
-                      <p class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-cyan-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:hover:bg-cyan-700 dark:focus:cyan-blue-900">
-                        {blog.keywords}
-                      </p>
-                    </div>
-                    <div className="flex flex-row justify-center mb-2">
-                      <a
-                        className="text-green-500 bg-cyan-950 border border-cyan-700 rounded-l-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
-                        href={`/view-blog/${blog.bid}`}
-                      >
-                        View
-                      </a>
-                      <a
-                        className="text-blue-500 bg-cyan-950 border-y border-cyan-700 px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
-                        href={`/edit-blog/${blog.bid}`}
-                      >
-                        Edit
-                      </a>
-                      <button
-                        className="text-red-500 bg-cyan-950 border border-cyan-700 rounded-r-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
-                        onClick={() => onDelete(blog.bid)}
-                      >
-                        Delete
-                      </button>
-                    </div>
+                    <p className="mb-3 text-sm text-start font-normal text-gray-700 dark:text-gray-400 w-full overflow-hidden h-16">
+                      {blog.content}
+                    </p>
+                    <p className="inline-flex items-center px-3 py-1 text-sm font-medium text-center text-gray-400 bg-cyan-800 bg-opacity-50 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-cyan-700 dark:focus:cyan-blue-900">
+                      {blog.keywords}
+                    </p>
+                  </div>
+                  <div className="flex flex-row justify-center mb-2">
+                    <NavLink
+                      className="text-emerald-500 bg-cyan-950 border border-cyan-700 rounded-l-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
+                      to={`/post/${blog.id}`}
+                    >
+                      View
+                    </NavLink>
+                    <NavLink
+                      className="text-sky-500 bg-cyan-950 border-y border-cyan-700 px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
+                      to={`/edit-blog/${blog.id}`}
+                    >
+                      Edit
+                    </NavLink>
+                    <button
+                      className="text-rose-600 bg-cyan-950 border border-cyan-700 rounded-r-md px-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
+                      onClick={() => onDelete(blog.id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         )}
       </div>

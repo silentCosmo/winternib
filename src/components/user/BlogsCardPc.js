@@ -7,9 +7,11 @@ function BlogsCardPc({ blog }) {
   const prevYear = { month: "short", day: "numeric", year: "numeric" };
   const thisYear = new Date().getFullYear();
   const navto = useNavigate();
+  
   const onClick = (id) => {
-    navto(`/view-blog/${id}`);
+    navto(`/post/${id}`);
   };
+
   return (
     <div>
       <div key={blog.bid} className="flex flex-row mt-1">
@@ -39,7 +41,7 @@ function BlogsCardPc({ blog }) {
               </div>
             </div>
             <p
-              onClick={() => onClick(blog.bid)}
+              onClick={() => onClick(blog.id)}
               className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-start"
             >
               {blog.content.length > 150 || blog.title.length > 70

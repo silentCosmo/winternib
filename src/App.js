@@ -20,7 +20,7 @@ function App() {
   //const auth = useSelector((state)=>state.blogs.user)
   const auth = JSON.parse(localStorage.getItem('auth'))
   const bgIm = useSelector((state)=>state.blogs.bg)
-  console.log(auth);
+  //console.log(auth);
 
   useEffect(()=>{
     /* const auth = localStorage.getItem('auth')
@@ -49,7 +49,7 @@ function App() {
       element: <AddBlog/>
     },
     {
-      path: '/view-blog/:id',
+      path: '/post/:id',
       element: <ViewBlog/>
     },
     {

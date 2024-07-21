@@ -19,7 +19,11 @@ function AddBlog() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(createBlog(submitValues));
+    const dateValue = submitValues.date ? new Date(submitValues.date) : new Date();
+    const formattedDate = dateValue.toISOString();
+    
+    dispatch(createBlog({ ...submitValues,date:formattedDate }));
+    console.log(...submitValues.date+'sv');
     navigate("/blog-management");
   };
 
@@ -87,6 +91,24 @@ function AddBlog() {
         </div>
         <div className="mb-6">
           <label
+            htmlFor="date"
+            className="block mb-2 text-sm font-medium text-start"
+          >
+            Date
+          </label>
+          <input
+            type="date"
+            id="date"
+            value={submitValues.date}
+            onChange={(e) =>
+              setSubmitValues({ ...submitValues, date: e.target.value })
+            }
+            className="shadow-sm bg-gray-950 outline-none bg-opacity-40 border border-cyan-800 text-sm rounded-sm block w-full p-2.5"
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <label
             className="block mb-2 text-sm font-medium text-cyan-300 text-start"
             htmlFor="user_avatar"
           >
@@ -101,7 +123,6 @@ function AddBlog() {
             type="file"
             onChange={(e) => handleImageUpload(e.target.files[0])}
             className="block w-full rounded-sm text-sm border border-cyan-800 cursor-pointer bg-gray-950"
-            required
           />
         </div>
         <div className="mb-6">

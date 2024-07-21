@@ -1,4 +1,4 @@
-import { collection, query, orderBy, limit, getDocs, startAfter } from "firebase/firestore";
+import { onValue, query, ref, orderByKey, limitToLast, endAt } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase/config";
@@ -9,7 +9,7 @@ import BlogsCardPc from "./BlogsCardPc";
 function ListBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [lastDoc, setLastDoc] = useState(null);
+  const [lastKey, setLastKey] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const sameYear = { month: "short", day: "numeric" };
   const prevYear = { month: "short", day: "numeric", year: "numeric" };
@@ -17,33 +17,35 @@ function ListBlogs() {
   const navto = useNavigate();
   const BLOGS_BATCH_SIZE = 10;
 
-  const fetchBlogs = async (startAfterDoc = null) => {
+  const fetchBlogs = (key = null) => {
     setLoading(true);
 
-    const blogQuery = query(
-      collection(db, "blogs"),
-      orderBy("date", "desc"),
-      limit(BLOGS_BATCH_SIZE)
-    );
+    let blogQuery = query(ref(db, "blogs/"), orderByKey(), limitToLast(BLOGS_BATCH_SIZE));
 
-    const fullQuery = startAfterDoc
-      ? query(blogQuery, startAfter(startAfterDoc))
-      : blogQuery;
-
-    try {
-      const querySnapshot = await getDocs(fullQuery);
-      const blogsArray = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log(blogsArray);
-
-      // Check if there are more blogs to fetch
-      setBlogs(prevBlogs => [...prevBlogs, ...blogsArray]);
-      setLastDoc(querySnapshot.docs.length > 0 ? querySnapshot.docs[querySnapshot.docs.length - 1] : null);
-      setHasMore(querySnapshot.docs.length === BLOGS_BATCH_SIZE);
-    } catch (error) {
-      console.error('Error fetching blogs:', error);
-    } finally {
-      setLoading(false);
+    if (key) {
+      blogQuery = query(ref(db, "blogs/"), orderByKey(), endAt(key), limitToLast(BLOGS_BATCH_SIZE + 1));
     }
+
+    onValue(blogQuery, (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        const blogsArray = Object.entries(data).map(([key, blog]) => ({ key, ...blog }));
+
+        // Check if there are more blogs to fetch
+        const newBlogs = blogsArray.reverse();
+        if (key) {
+          // Remove the first blog as it will be repeated in the new batch
+          newBlogs.shift();
+        }
+
+        setBlogs((prevBlogs) => [...prevBlogs, ...newBlogs]);
+        setLastKey(newBlogs.length ? newBlogs[newBlogs.length - 1]?.key : null);
+        setHasMore(newBlogs.length === BLOGS_BATCH_SIZE);
+      } else {
+        setHasMore(false);
+      }
+      setLoading(false);
+    });
   };
 
   useEffect(() => {
@@ -51,7 +53,7 @@ function ListBlogs() {
   }, []);
 
   const onClick = (id) => {
-    navto(`/post/${id}`);
+    navto(`/view-blog/${id}`);
   };
 
   return (
@@ -62,7 +64,7 @@ function ListBlogs() {
         ) : (
           <div className="grid md:grid-cols-2 p-2 grid-cols-1 gap-2">
             {blogs.map((blog) => (
-              <React.Fragment key={blog.id}>
+              <React.Fragment key={blog.key}>
                 <div className="text-right hidden md:block w-[48vw]">
                   <BlogsCardPc blog={blog} />
                 </div>
@@ -79,12 +81,8 @@ function ListBlogs() {
                       <div className="text-right">
                         <p className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-gray-400 bg-cyan-600 bg-opacity-20 rounded-md hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-cyan-700 dark:focus:cyan-blue-900">
                           {thisYear === new Date(blog.date).getFullYear()
-                            ? new Date(blog.date)
-                              .toLocaleDateString("en-US", sameYear)
-                              .replace(/,/g, "")
-                            : new Date(blog.date)
-                              .toLocaleDateString("en-US", prevYear)
-                              .replace(/,/g, "")}
+                            ? new Date(blog.date).toLocaleDateString("en-US", sameYear).replace(/,/g, "")
+                            : new Date(blog.date).toLocaleDateString("en-US", prevYear).replace(/,/g, "")}
                         </p>
                       </div>
                       <div className="text-left">
@@ -93,7 +91,7 @@ function ListBlogs() {
                         </h5>
                       </div>
                       <p
-                        onClick={() => onClick(blog.id)}
+                        onClick={() => onClick(blog.bid)}
                         className="mb-3 font-normal text-slate-100 opacity-50 max-w-fit text-start overflow-hidden"
                       >
                         {truncateText(blog.content, 165)}
@@ -112,13 +110,13 @@ function ListBlogs() {
       {hasMore && (
         <div className={`flex flex-col items-center my-5`}>
           <button
-            onClick={() => fetchBlogs(lastDoc)}
-            className={`px-4 py-2 text-slate-300 bg-cyan-700 bg-opacity-50 backdrop-blur-xl rounded hover:bg-cyan-800 ${loading && ('hidden')}`}
+            onClick={() => fetchBlogs(lastKey)}
+            className={`px-4 py-2 text-slate-300 bg-cyan-700 bg-opacity-50 backdrop-blur-xl rounded hover:bg-cyan-800 ${loading &&('hidden')}`}
           >
             Load More
           </button>
           {loading && blogs.length > 0 && (
-            <div className="mt-4 spinner"></div>
+            <div className="mt-4 spinner"></div>  
           )}
         </div>
       )}
